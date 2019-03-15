@@ -67,6 +67,12 @@ if settings.WEBHOOKS_ENABLED:
         url(r'^admin/webhook-backend-status/', include('django_rq.urls')),
     ]
 
+if settings.SAML_CONFIGURED:
+    import django_saml2_auth.views
+    _patterns += [
+        url(r'^saml2_auth/', include('django_saml2_auth.urls')),
+    ]
+
 if settings.DEBUG:
     import debug_toolbar
     _patterns += [

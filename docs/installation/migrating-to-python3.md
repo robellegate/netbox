@@ -37,6 +37,12 @@ If using LDAP authentication, install the `django-auth-ldap` package:
 # pip3 install django-auth-ldap
 ```
 
+If using SAML authentication, install the `django-saml2-auth` package:
+
+```no-highlight
+# pip3 install django-saml2-auth
+```
+
 If using Webhooks, install the `django-rq` package:
 
 ```no-highlight

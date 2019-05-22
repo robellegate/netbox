@@ -31,7 +31,9 @@ def _record_object_deleted(request, instance, **kwargs):
 
     # Force resolution of request.user in case it's still a SimpleLazyObject. This seems to happen
     # occasionally during tests, but haven't been able to determine why.
-    assert request.user.is_authenticated
+    # Note: We exclude SAML2 login flow deletions, as the call to request.session.flush() throws this assertion
+    if request.path_info != '/saml2_auth/acs/':
+        assert request.user.is_authenticated
 
     # Record that the object was deleted
     if hasattr(instance, 'log_change'):
